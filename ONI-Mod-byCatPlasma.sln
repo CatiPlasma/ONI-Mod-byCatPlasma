@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinese-Food", "Chinese-Food\Chinese-Food.csproj", "{01A919DA-6CD4-4ABF-A4C1-957753B906E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatUtilLib", "CatUtilLib\CatUtilLib.csproj", "{29376510-7874-4799-B7D1-08A27ECCE9CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01A919DA-6CD4-4ABF-A4C1-957753B906E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A919DA-6CD4-4ABF-A4C1-957753B906E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A919DA-6CD4-4ABF-A4C1-957753B906E9}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{01A919DA-6CD4-4ABF-A4C1-957753B906E9}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{29376510-7874-4799-B7D1-08A27ECCE9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29376510-7874-4799-B7D1-08A27ECCE9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29376510-7874-4799-B7D1-08A27ECCE9CA}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{29376510-7874-4799-B7D1-08A27ECCE9CA}.Debug|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

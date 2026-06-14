@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>Chinese_Food</RootNamespace>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="0Harmony">
+        <HintPath>..\Libs\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>..\Libs\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>..\Libs\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="Dupes Cuisine">
+        <HintPath>..\Libs\OtherMods\Dupes Cuisine.dll</HintPath>
+      </Reference>
+      <Reference Include="FMODUnity">
+        <HintPath>..\Libs\FMODUnity.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>..\Libs\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\Libs\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>..\Libs\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>..\Libs\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>..\Libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>..\Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>..\Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>..\Libs\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>..\Libs\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CatUtilLib\CatUtilLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ILRepack" Version="2.0.45">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="PLib" Version="4.24.0" />
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="IF exist &quot;C:\Users\A\Documents\Klei\OxygenNotIncluded\mods\Dev\$(TargetName)&quot; ( echo Mod Dir exists ) ELSE  ( mkdir &quot;C:\Users\A\Documents\Klei\OxygenNotIncluded\mods\Dev\$(TargetName)&quot; &amp;&amp; echo Mod Dir created)&#xA;&#xA;$(ILRepack) /lib:$(SolutionDir)Libs /out:&quot;$(SolutionDir)$(TargetName)\Release\$(TargetName)-Repacked.dll&quot; &quot;$(SolutionDir)$(TargetName)\bin\Release\netstandard2.1\$(TargetName).dll&quot; &quot;$(SolutionDir)$(TargetName)\bin\Release\netstandard2.1\CatUtilLib.dll&quot;&#xA;&#xA;xcopy &quot;$(SolutionDir)$(TargetName)\Release&quot; &quot;C:\Users\A\Documents\Klei\OxygenNotIncluded\mods\Dev\$(TargetName)&quot; /y /s" />
+    </Target>
+
+</Project>
