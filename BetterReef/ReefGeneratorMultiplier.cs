@@ -97,18 +97,18 @@ namespace BetterReef
 
         public void TuneupStart()
         {
+            isTuneup = true;
             if (multiplier == tuneupMultiplier) return;
             multiplier = tuneupMultiplier;
             UpdateModifier();
-            isTuneup = true;
         }
 
         public void TuneupEnd()
         {
+            isTuneup = false;
             if (multiplier == normalMultiplier) return;
             multiplier = normalMultiplier;
             UpdateModifier();
-            isTuneup = false;
         }
     }
 }
