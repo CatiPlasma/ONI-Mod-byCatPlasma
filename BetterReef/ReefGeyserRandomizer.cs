@@ -9,23 +9,21 @@ namespace BetterReef
     {
         [Serialize] private float inhaleMultiplier = -1f;
         [Serialize] private float exhaleMultiplier = -1f;
-        [Serialize] private bool isRolled = false;
+
+        private bool isRolled;
         
         public float GetInhaleMultiplier() => inhaleMultiplier;
         public float GetExhaleMultiplier() => exhaleMultiplier;
         
-        private const float minExhaleMultiplier = 0.25f;
-        private const float maxExhaleMultiplier = 4f;
-        private const float minInhaleMultiplier = 0.25f;
-        private const float maxInhaleMultiplier = 4f;
+        private const float minMultiplier = 0.25f;
+        private const float maxMultiplier = 4f;
         
         private SchedulerHandle retryHandle;
 
         protected override void OnSpawn()
         {
-            base.OnSpawn();
-            if (!isRolled) InitMultiplier();
             ApplyMultiplier();
+            base.OnSpawn();
         }
 
         protected override void OnCleanUp()
@@ -36,14 +34,15 @@ namespace BetterReef
         
         private void InitMultiplier()
         {
-            inhaleMultiplier = CatUtils.Roll(gameObject, minInhaleMultiplier, maxInhaleMultiplier);
-            exhaleMultiplier = CatUtils.Roll(gameObject, minExhaleMultiplier, maxExhaleMultiplier);
-            
-            isRolled = true;
+            (inhaleMultiplier, exhaleMultiplier) = CatUtils.Roll(gameObject, minMultiplier, maxMultiplier, 2);
         }
 
         private void ApplyMultiplier()
         {
+            isRolled = (inhaleMultiplier > 0 && exhaleMultiplier > 0);
+            
+            if (!isRolled) InitMultiplier();
+            
             if (!TryGetTarget(
                     out Storage storage,
                     out ElementConsumer elementConsumer,

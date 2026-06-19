@@ -9,9 +9,8 @@ namespace BetterReef
         [Serialize] private float bubbleMultiplier = -1f;
         [Serialize] private float buildupMultiplier = -1f;
         [Serialize] private float solidMultiplier = -1f;
-        
-        public float GetSolidMultiplier() => this.solidMultiplier;
-        
+
+        private bool isRolled;
         private float minBubbleMultiplier = 0.12f;
         private float maxBubbleMultiplier = 12f;
         private float minBuildupMultiplier = 0.5f;
@@ -19,13 +18,11 @@ namespace BetterReef
         private float minSolidMultiplier = 0.25f;
         private float maxSolidMultiplier = 4f;
         
-        private bool isRolled = false;
         private SchedulerHandle retryHandler;
 
         protected override void OnSpawn()
         {
             base.OnSpawn();
-            if (!isRolled) InitMultiplier();
             ApplyMultiplier();
         }
 
@@ -38,14 +35,15 @@ namespace BetterReef
         private void InitMultiplier()
         {
             bubbleMultiplier = CatUtils.Roll(gameObject, minBubbleMultiplier, maxBubbleMultiplier);
-            buildupMultiplier = CatUtils.Roll(gameObject, minBuildupMultiplier, maxBuildupMultiplier);
-            solidMultiplier = CatUtils.Roll(gameObject, minSolidMultiplier, maxSolidMultiplier);
-            
-            isRolled = true;
+            buildupMultiplier = 2 * CatUtils.Roll(gameObject, minBuildupMultiplier, maxBuildupMultiplier) / bubbleMultiplier;
+            solidMultiplier = 2 * CatUtils.Roll(gameObject, minSolidMultiplier, maxSolidMultiplier) / bubbleMultiplier;
         }
 
         private void ApplyMultiplier()
         {
+            isRolled = (bubbleMultiplier>0 && buildupMultiplier>0 && solidMultiplier>0);
+            if (!isRolled) InitMultiplier();
+            
             UnderwaterVent.Instance smi = GetComponent<StateMachineController>()?.GetSMI<UnderwaterVent.Instance>();
             if (smi == null)
             {
