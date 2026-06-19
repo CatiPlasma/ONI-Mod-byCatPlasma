@@ -5,41 +5,41 @@ msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN"
-msgid "Average Power Generation: {0}"
+msgid "平均电量：{0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE"
-msgid "Exhale Rate: {0}/s"
+msgid "喷出速度：{0}/s"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE"
-msgid "Inhale Rate: {0}/s"
+msgid "吸入速度：{0}/s"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN"
-msgid "Peak Power Generation: {0}"
+msgid "峰值电量：{0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALSTORAGE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALSTORAGE"
-msgid "Total Storage: {0}"
+msgid "总液体储量：{0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION"
-msgid "Build-up Time: {0}"
+msgid "淤积时间：{0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT"
-msgid "Emitting Rate: {0}"
+msgid "喷出速率：{0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID"
-msgid "Actual <link=\"SULFUR\">Sulfur</link> Build-up: {0}"
+msgid "实际<link=\"SULFUR\">硫</link>堆积: {0}"
 msgstr ""
 

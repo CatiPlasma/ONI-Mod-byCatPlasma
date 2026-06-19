@@ -100,6 +100,13 @@ namespace BetterReef
             };
         }
 
+        public static void RegisterUnderwaterVentString()
+        {
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT", STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT);
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION", STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION);
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID", STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID);
+        }
+
         private void SchedualedRetry()
         {
             if (isRolled || retryHandler.IsValid || GameScheduler.Instance == null)

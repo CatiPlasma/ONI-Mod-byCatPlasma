@@ -30,9 +30,9 @@ namespace BetterReef
         protected override void OnSpawn()
         {
             base.OnSpawn();
-            LogUtil.Debug($"Rate Before: {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.inhaleRate}, {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.exhaleRate}");
+            // LogUtil.Debug($"Rate Before: {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.inhaleRate}, {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.exhaleRate}");
             ApplyMultiplier();
-            LogUtil.Debug($"Rate After: {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.inhaleRate}, {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.exhaleRate}");
+            // LogUtil.Debug($"Rate After: {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.inhaleRate}, {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.exhaleRate}");
         }
 
         protected override void OnCleanUp()
@@ -110,6 +110,15 @@ namespace BetterReef
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN,
                         GameUtil.GetFormattedWattage(GetAveragePower())))
             };
+        }
+
+        public static void RegisterReefGeyserString()
+        {
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE", STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE);
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE", STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE);
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.TIDALSTORAGE", STRINGS.UI.BUILDINGEFFECTS.TIDALSTORAGE);
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN", STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN);
+            Strings.Add("STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN", STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN);
         }
 
         private bool TryGetTarget(

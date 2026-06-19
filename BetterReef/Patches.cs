@@ -1,4 +1,6 @@
-﻿using CatUtilLib;
+﻿using System.IO;
+using System.Reflection;
+using CatUtilLib;
 using HarmonyLib;
 using UnityEngine;
 
@@ -58,6 +60,16 @@ namespace BetterReef
             public static void Postfix()
             {
                 LocalizationUtil.MakeLocalization(typeof(STRINGS));
+            }
+        }
+
+        [HarmonyPatch(typeof(Db), nameof(Db.Initialize))]
+        public static class Db_Initialize_Patch
+        {
+            public static void Postfix()
+            {
+                ReefGeyserRandomizer.RegisterReefGeyserString();
+                UnderwaterVentRandomizer.RegisterUnderwaterVentString();
             }
         }
     }

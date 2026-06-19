@@ -6,7 +6,7 @@ msgstr ""
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN"
 msgid "Average Power Generation: {0}"
-msgstr "平均电量：{0}"
+msgstr "均值电量：{0}"
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE"
@@ -41,5 +41,5 @@ msgstr "喷出速率：{0}"
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID"
 msgid "Actual <link=\"SULFUR\">Sulfur</link> Build-up: {0}"
-msgstr "实际<link=\"SULFUR\">硫</link>淤积量: {0}"
+msgstr "实际<link=\"SULFUR\">硫</link>堆积: {0}"
 
