@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CatUtilLib
 {
     public static class StringUtil
     {
-        public static string GetFoodNameKey(string id)
+        public static void RegisterFoodStrings(string id, string name, string desc)
         {
-            return $"STRINGS.ITEMS.FOOD.{id.ToUpper()}.NAME";
+            Strings.Add($"STRINGS.ITEMS.FOOD.{id.ToUpperInvariant()}.NAME", name);
+            Strings.Add($"STRINGS.ITEMS.FOOD.{id.ToUpperInvariant()}.DESC", desc);
         }
-        public static string GetFoodDescKey(string id)
+
+        public static void RegisterFoodRecipeDescription(string id, Dictionary<string, string> recipeDescription)
         {
-            return $"STRINGS.ITEMS.FOOD.{id.ToUpper()}.DESC";
+            foreach (string key in recipeDescription.Keys)
+            {
+                Strings.Add($"STRINGS.ITEMS.FOOD.{id.ToUpperInvariant()}.{key.ToUpperInvariant()}.RECIPEDESC",  recipeDescription[key]);
+            }
         }
 
         public static string GetFoodRecipeDescKey(string id, string cookingStationId = "")
