@@ -52,6 +52,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="ArrayDeconstructors.Source" Version="1.0.4">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="ILRepack" Version="2.0.45">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
