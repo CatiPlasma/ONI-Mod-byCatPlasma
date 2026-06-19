@@ -1,10 +1,12 @@
-﻿using CatUtilLib;
+﻿using System.Collections.Generic;
+using CatUtilLib;
 using KSerialization;
+using UnityEngine;
 
 namespace BetterReef
 {
     [SerializationConfig(MemberSerialization.OptIn)]
-    public class UnderwaterVentRandomizer: KMonoBehaviour
+    public class UnderwaterVentRandomizer: KMonoBehaviour, IGameObjectEffectDescriptor
     {
         [Serialize] private float bubbleMultiplier = -1f;
         [Serialize] private float buildupMultiplier = -1f;
@@ -19,6 +21,10 @@ namespace BetterReef
         private float maxSolidMultiplier = 4f;
         
         private SchedulerHandle retryHandler;
+        
+        public float GetEmittingRate() => bubbleMultiplier * 0.083333336f;
+        public float GetBuilduDuration() => buildupMultiplier * 1200f;
+        public float GetSolidMass() => solidMultiplier * 1000f;
 
         protected override void OnSpawn()
         {
@@ -71,7 +77,29 @@ namespace BetterReef
             };
             smi.def = target;
         }
-        
+
+        public List<Descriptor> GetDescriptors(GameObject go)
+        {
+            return new List<Descriptor>
+            {
+                new Descriptor(
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT,
+                        GameUtil.GetFormattedMass(GetEmittingRate())),
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT,
+                        GameUtil.GetFormattedMass(GetEmittingRate()))),
+                new Descriptor(
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION,
+                        GameUtil.GetFormattedCycles(GetBuilduDuration())),
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION,
+                        GameUtil.GetFormattedCycles(GetBuilduDuration()))),
+                new Descriptor(
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID,
+                        GameUtil.GetFormattedMass(GetSolidMass())),
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID,
+                        GameUtil.GetFormattedMass(GetSolidMass())))
+            };
+        }
+
         private void SchedualedRetry()
         {
             if (isRolled || retryHandler.IsValid || GameScheduler.Instance == null)
