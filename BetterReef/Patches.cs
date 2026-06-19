@@ -51,5 +51,14 @@ namespace BetterReef
                 if (__result != null) __result.AddOrGet<UnderwaterVentRandomizer>();
             }
         }
+
+        [HarmonyPatch(typeof(Localization), nameof(Localization.Initialize))]
+        public static class Localization_Initialize_Patch
+        {
+            public static void Postfix()
+            {
+                LocalizationUtil.MakeLocalization(typeof(STRINGS));
+            }
+        }
     }
 }
