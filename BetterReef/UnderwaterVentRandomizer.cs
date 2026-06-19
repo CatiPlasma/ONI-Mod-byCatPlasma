@@ -36,7 +36,7 @@ namespace BetterReef
         {
             bubbleMultiplier = CatUtils.Roll(gameObject, minBubbleMultiplier, maxBubbleMultiplier);
             buildupMultiplier = 2 * CatUtils.Roll(gameObject, minBuildupMultiplier, maxBuildupMultiplier) / bubbleMultiplier;
-            solidMultiplier = 2 * CatUtils.Roll(gameObject, minSolidMultiplier, maxSolidMultiplier) / bubbleMultiplier;
+            solidMultiplier = CatUtils.Roll(gameObject, minSolidMultiplier, maxSolidMultiplier) / buildupMultiplier;
         }
 
         private void ApplyMultiplier()
