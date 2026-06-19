@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using CatUtilLib;
+using HarmonyLib;
 using KMod;
 
 namespace Chinese_Food
@@ -11,7 +12,7 @@ namespace Chinese_Food
         {
             base.OnLoad(harmony);
             
-            Debug.Log("[Chinese Food] Loaded");
+            LogUtil.Info("Loaded");
         }
     }
 }

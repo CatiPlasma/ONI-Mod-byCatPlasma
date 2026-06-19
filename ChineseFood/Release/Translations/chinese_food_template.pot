@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included"
+"POT Version: 2.0"
+
+#. Chinese_Food.STRINGS.FOOD.BOILSPICEPORK.COOKSTATIONRECIPEDESC
+msgctxt "Chinese_Food.STRINGS.FOOD.BOILSPICEPORK.COOKSTATIONRECIPEDESC"
+msgid "汤真的留得住吗？"
+msgstr ""
+
+#. Chinese_Food.STRINGS.FOOD.BOILSPICEPORK.DESC
+msgctxt "Chinese_Food.STRINGS.FOOD.BOILSPICEPORK.DESC"
+msgid "嘶哈，好辣！"
+msgstr ""
+
+#. Chinese_Food.STRINGS.FOOD.BOILSPICEPORK.NAME
+msgctxt "Chinese_Food.STRINGS.FOOD.BOILSPICEPORK.NAME"
+msgid "<link=\"BOILEDSPICYPORK\">水煮肉片</link>"
+msgstr ""
+
+#. Chinese_Food.STRINGS.FOOD.SWEETSOURRIB.COOKSTATIONRECIEDESC
+msgctxt "Chinese_Food.STRINGS.FOOD.SWEETSOURRIB.COOKSTATIONRECIEDESC"
+msgid "希望复制人永远都不用清理做过这道菜的烤架"
+msgstr ""
+
+#. Chinese_Food.STRINGS.FOOD.SWEETSOURRIB.DESC
+msgctxt "Chinese_Food.STRINGS.FOOD.SWEETSOURRIB.DESC"
+msgid "复制人会得糖尿病吗？"
+msgstr ""
+
+#. Chinese_Food.STRINGS.FOOD.SWEETSOURRIB.NAME
+msgctxt "Chinese_Food.STRINGS.FOOD.SWEETSOURRIB.NAME"
+msgid "<link=\"SWEETANDSOURRIBS\">糖醋排骨</link>"
+msgstr ""
+
