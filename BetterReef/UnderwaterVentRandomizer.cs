@@ -18,10 +18,8 @@ namespace BetterReef
         private bool isRolled;
         private float minBubbleMultiplier = 0.12f;
         private float maxBubbleMultiplier = 12f;
-        private float minBuildupMultiplier = 0.5f;
-        private float maxBuildupMultiplier = 2f;
-        private float minSolidMultiplier = 0.25f;
-        private float maxSolidMultiplier = 4f;
+        private float minBuildupSOlidMultiplier = 0.5f;
+        private float maxBuildupSolidMultiplier = 2f;
 
         [MyCmpAdd] private UserNameable nameable;
         private SchedulerHandle retryHandler;
@@ -46,9 +44,13 @@ namespace BetterReef
         private void InitMultiplier()
         {
             bubbleMultiplier = CatUtils.Roll(gameObject, minBubbleMultiplier, maxBubbleMultiplier);
-            buildupMultiplier = CatUtils.Roll(gameObject, minBuildupMultiplier, maxBuildupMultiplier) /
-                                (float)Math.Sqrt(bubbleMultiplier);
-            solidMultiplier = CatUtils.Roll(gameObject, minSolidMultiplier, maxSolidMultiplier) / buildupMultiplier;
+            var (buildupMultiplierTemp, solidMultiplierTemp) = CatUtils.Roll(
+                gameObject, 
+                minBuildupSOlidMultiplier, 
+                maxBuildupSolidMultiplier, 
+                2);
+            buildupMultiplier = buildupMultiplierTemp / (float)Math.Sqrt(bubbleMultiplier);
+            solidMultiplier = solidMultiplierTemp / (float)Math.Sqrt(buildupMultiplier);
         }
 
         private void ApplyMultiplier()
