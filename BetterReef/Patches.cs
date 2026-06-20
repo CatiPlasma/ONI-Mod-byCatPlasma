@@ -1,7 +1,8 @@
-﻿using System.IO;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
 using CatUtilLib;
 using HarmonyLib;
+using KMod;
 using UnityEngine;
 
 namespace BetterReef
@@ -14,7 +15,9 @@ namespace BetterReef
         {
             public static void Postfix(GameObject __result)
             {
-                if (__result != null) __result.AddOrGet<ReefGeyserRandomizer>();
+                if (__result == null) return;
+                __result.AddOrGet<UserNameable>();
+                __result.AddOrGet<ReefGeyserRandomizer>();
             }
         }
 
@@ -25,23 +28,23 @@ namespace BetterReef
             {
                 if (go != null) go.AddOrGet<ReefGeneratorMultiplier>();
             }
-        }
 
-        [HarmonyPatch(typeof(Tinkerable), "OnCompleteWork")]
-        public static class Tinkerable_OnCompleteWork_Patch
-        {
-            public static void Postfix(Tinkerable __instance)
+            [HarmonyPatch(typeof(Tinkerable), "OnCompleteWork")]
+            public static class Tinkerable_OnCompleteWork_Patch
             {
-                if (__instance.gameObject.GetComponent<ReefGeneratorMultiplier>() != null) __instance.gameObject.GetComponent<ReefGeneratorMultiplier>().TuneupStart();
+                public static void Postfix(Tinkerable __instance)
+                {
+                    if (__instance.gameObject.GetComponent<ReefGeneratorMultiplier>() != null) __instance.gameObject.GetComponent<ReefGeneratorMultiplier>().TuneupStart();
+                }
             }
-        }
-        
-        [HarmonyPatch(typeof(Tinkerable), "OnEffectRemoved")]
-        public static class Tinkerable_OnEffectRemoved_Patch
-        {
-            public static void Postfix(Tinkerable __instance)
+
+            [HarmonyPatch(typeof(Tinkerable), "OnEffectRemoved")]
+            public static class Tinkerable_OnEffectRemoved_Patch
             {
-                if (__instance.gameObject.GetComponent<ReefGeneratorMultiplier>() != null)  __instance.gameObject.GetComponent<ReefGeneratorMultiplier>().TuneupEnd();
+                public static void Postfix(Tinkerable __instance)
+                {
+                    if (__instance.gameObject.GetComponent<ReefGeneratorMultiplier>() != null)  __instance.gameObject.GetComponent<ReefGeneratorMultiplier>().TuneupEnd();
+                }
             }
         }
 
@@ -50,7 +53,9 @@ namespace BetterReef
         {
             public static void Postfix(GameObject __result)
             {
-                if (__result != null) __result.AddOrGet<UnderwaterVentRandomizer>();
+                if (__result == null) return;
+                __result.AddOrGet<UnderwaterVentRandomizer>();
+                __result.AddOrGet<UserNameable>();
             }
         }
 
@@ -70,6 +75,19 @@ namespace BetterReef
             {
                 ReefGeyserRandomizer.RegisterReefGeyserString();
                 UnderwaterVentRandomizer.RegisterUnderwaterVentString();
+            }
+        }
+
+        public static class CompatibilityPatches
+        {
+            public static void MapOverlayCompatibility(GameObject go, ref object colorReference)
+            {
+                if (go.GetComponent<ReefGeyserRandomizer>() != null)
+                {
+                    colorReference = "Thermal Gas Fissure";
+                    return;
+                }
+                if (go.GetComponent<UnderwaterVentRandomizer>() != null) colorReference = "Tidal Spring";
             }
         }
     }

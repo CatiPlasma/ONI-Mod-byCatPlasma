@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CatUtilLib;
 using KSerialization;
+using STRINGS;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BetterReef
 {
@@ -19,7 +22,8 @@ namespace BetterReef
         private float maxBuildupMultiplier = 2f;
         private float minSolidMultiplier = 0.25f;
         private float maxSolidMultiplier = 4f;
-        
+
+        [MyCmpAdd] private UserNameable nameable;
         private SchedulerHandle retryHandler;
         
         public float GetEmittingRate() => bubbleMultiplier * 0.083333336f;
@@ -30,6 +34,7 @@ namespace BetterReef
         {
             base.OnSpawn();
             ApplyMultiplier();
+            GenerateName();
         }
 
         protected override void OnCleanUp()
@@ -41,7 +46,8 @@ namespace BetterReef
         private void InitMultiplier()
         {
             bubbleMultiplier = CatUtils.Roll(gameObject, minBubbleMultiplier, maxBubbleMultiplier);
-            buildupMultiplier = 2 * CatUtils.Roll(gameObject, minBuildupMultiplier, maxBuildupMultiplier) / bubbleMultiplier;
+            buildupMultiplier = CatUtils.Roll(gameObject, minBuildupMultiplier, maxBuildupMultiplier) /
+                                (float)Math.Sqrt(bubbleMultiplier);
             solidMultiplier = CatUtils.Roll(gameObject, minSolidMultiplier, maxSolidMultiplier) / buildupMultiplier;
         }
 
@@ -76,6 +82,20 @@ namespace BetterReef
                 }
             };
             smi.def = target;
+        }
+        
+        private void GenerateName()
+        {
+            if (nameable.savedName !=
+                Strings.Get(new StringKey("STRINGS.CREATURES.SPECIES.GEYSER.UNDERWATERVENT.NAME"))) return;
+            string[] firstTwoAll = NAMEGEN.GEYSER_IDS.IDs.ToString().Split('\n');
+            string firstTwo = firstTwoAll[Random.Range(1, firstTwoAll.Length)];
+            nameable.SetName(UI.FormatAsLink(string.Concat(
+                UI.StripLinkFormatting(gameObject.GetProperName()),
+                " ",
+                firstTwo,
+                "-",
+                Random.Range(0, 10).ToString()), "UNDERWATERVENT"));
         }
 
         public List<Descriptor> GetDescriptors(GameObject go)

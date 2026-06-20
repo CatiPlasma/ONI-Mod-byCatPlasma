@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using CatUtilLib;
 using KSerialization;
+using STRINGS;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BetterReef
 {
@@ -13,6 +15,11 @@ namespace BetterReef
         [Serialize] private float exhaleMultiplier = -1f;
 
         private bool isRolled;
+        private const float minMultiplier = 0.25f;
+        private const float maxMultiplier = 4f;
+
+        [MyCmpAdd] private UserNameable nameable;
+        private SchedulerHandle retryHandle;
         
         public float GetInhaleMultiplier() => inhaleMultiplier;
         public float GetExhaleMultiplier() => exhaleMultiplier;
@@ -21,18 +28,12 @@ namespace BetterReef
         public float GetPeakPower() => 300f * (float)Math.Sqrt(exhaleMultiplier);
         public float GetAveragePower() => GetExhaleRate() * (GetInhaleRate() / (GetInhaleRate() + GetExhaleRate()));
         public float GetStorage() => Math.Max(GetInhaleMultiplier(), GetExhaleMultiplier()) * 15000f;
-        
-        private const float minMultiplier = 0.25f;
-        private const float maxMultiplier = 4f;
-        
-        private SchedulerHandle retryHandle;
 
         protected override void OnSpawn()
         {
             base.OnSpawn();
-            // LogUtil.Debug($"Rate Before: {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.inhaleRate}, {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.exhaleRate}");
             ApplyMultiplier();
-            // LogUtil.Debug($"Rate After: {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.inhaleRate}, {GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>().def.exhaleRate}");
+            GenerateName();
         }
 
         protected override void OnCleanUp()
@@ -78,6 +79,21 @@ namespace BetterReef
             storage.capacityKg *= Math.Max(inhaleMultiplier, exhaleMultiplier);
             elementConsumer.capacityKG = storage.capacityKg;
             elementConsumer.consumptionRate = target.inhaleRate;
+        }
+
+        private void GenerateName()
+        {
+            if (nameable.savedName !=
+                Strings.Get(new StringKey("STRINGS.CREATURES.SPECIES.GEYSER.SMALLREEFGEYSER.NAME"))) return;
+            string[] firstTwoAll = NAMEGEN.GEYSER_IDS.IDs.ToString().Split('\n');
+            string firstTwo = firstTwoAll[Random.Range(1, firstTwoAll.Length)];
+            nameable.SetName(UI.FormatAsLink(string.Concat(
+                UI.StripLinkFormatting(gameObject.GetProperName()),
+                " ",
+                GetAveragePower() < 225f ? "L" : "H",
+                firstTwo,
+                "-",
+                Random.Range(0, 10).ToString()), "SMALLREEFGEYSER"));
         }
 
         public List<Descriptor> GetDescriptors(GameObject go)
