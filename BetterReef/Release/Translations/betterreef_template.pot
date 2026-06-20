@@ -5,17 +5,17 @@ msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN"
-msgid "平均电量：{0}"
+msgid "均值电量：{0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE"
-msgid "喷出速度：{0}/s"
+msgid "喷出速度：{0}/秒"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE"
-msgid "吸入速度：{0}/s"
+msgid "吸入速度：{0}/秒"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN
@@ -35,7 +35,7 @@ msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT"
-msgid "喷出速率：{0}"
+msgid "喷出速率：{0}/秒"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID
