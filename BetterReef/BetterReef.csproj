@@ -22,6 +22,9 @@
       <Reference Include="FMODUnity">
         <HintPath>..\Libs\FMODUnity.dll</HintPath>
       </Reference>
+      <Reference Include="MapOverlay">
+        <HintPath>..\Libs\OtherMods\MapOverlay.dll</HintPath>
+      </Reference>
       <Reference Include="Unity.TextMeshPro">
         <HintPath>..\Libs\Unity.TextMeshPro.dll</HintPath>
       </Reference>
