@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CatUtilLib;
 using HarmonyLib;
 using KMod;
@@ -19,15 +18,25 @@ namespace BetterReef
         public override void OnAllModsLoaded(Harmony harmony, IReadOnlyList<Mod> mods)
         {
             LogUtil.Info("All Mods Loaded, Start Compatibility Process");
-
-            if (mods.Any(mod => "MapOverlay".Contains(mod.staticID)))
+            if (CatUtils.IsModLoaded("MapOverlay"))
             {
+                var type = AccessTools.TypeByName("MapOverlay.MapOverlay");
+                if (type == null) return;
+                
+                var method = AccessTools.Method(type, "UpdateMapEntry", new []{typeof(GameObject), typeof(object)});
+                if (method == null) return;
+
                 harmony.Patch(
-                    AccessTools.Method(typeof(MapOverlay.MapOverlay), "UpdateMapEntry",
-                        new[] { typeof(GameObject), typeof(object) }),
-                    prefix: new HarmonyMethod(typeof(Patches.CompatibilityPatches),
+                    method,
+                    new HarmonyMethod(
+                        typeof(Patches.CompatibilityPatches), 
                         nameof(Patches.CompatibilityPatches.MapOverlayCompatibility)));
+                
+                LogUtil.Info("MapOverlay Compatibility Patched");
             }
+            LogUtil.Info("Compatibility Process Finished");
         }
+
+        public static bool IsDebug = false;
     }
 }
