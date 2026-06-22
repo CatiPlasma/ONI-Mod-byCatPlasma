@@ -3,43 +3,63 @@ msgstr ""
 "Application: Oxygen Not Included"
 "POT Version: 2.0"
 
+#. BetterReef.STRINGS.CREATURES.SPECIES.GEYSER.UNDERWATERVENT.DESC
+msgctxt "BetterReef.STRINGS.CREATURES.SPECIES.GEYSER.UNDERWATERVENT.DESC"
+msgid "A subaquatic fissure that allows high-pressure <link=\"ELEMENTSGAS\">Gas</link> to escape from the planet's crust.\n\nBlockages caused by built-up <link=\"ELEMENTSSOLID\">Solid</link> can be removed using a <link=\"UNDERWATERVENTDRILL\">Marine Drill</link>."
+msgstr ""
+
+#. BetterReef.STRINGS.MISC.STATUSITEMS.UNDERWATERVENTBLOCKED.TOOLTIP
+msgctxt "BetterReef.STRINGS.MISC.STATUSITEMS.UNDERWATERVENTBLOCKED.TOOLTIP"
+msgid "This geyser is blocked by <style=\"KKeyword\">{ELEMENT}</style> build-up\n\nIt will resume function when unblocked by a <style=\"KKeyword\">Marine Drill</style>"
+msgstr ""
+
+#. BetterReef.STRINGS.MISC.STATUSITEMS.UNDERWATERVENTBUILDUPPROGRESS.NAME
+msgctxt "BetterReef.STRINGS.MISC.STATUSITEMS.UNDERWATERVENTBUILDUPPROGRESS.NAME"
+msgid "{ELEMENT} build-up: {PERCENTAGE}"
+msgstr ""
+
+#. BetterReef.STRINGS.MISC.STATUSITEMS.UNDERWATERVENTBUILDUPPROGRESS.TOOLTIP
+msgctxt "BetterReef.STRINGS.MISC.STATUSITEMS.UNDERWATERVENTBUILDUPPROGRESS.TOOLTIP"
+msgid "This geyser will become blocked when <style=\"KKeyword\">{ELEMENT}</style> build-up reaches 100%\n\nIt can be unblocked by building a <style=\"KKeyword\">Marine Drill</style> on top of the vent"
+msgstr ""
+
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALAVGGEN"
-msgid "均值电量：{0}"
+msgid "Average Power Generation: {0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALEXRATE"
-msgid "喷出速度：{0}/秒"
+msgid "Exhale Rate: {0}/s"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALINRATE"
-msgid "吸入速度：{0}/秒"
+msgid "Inhale Rate: {0}/s"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALPEKGEN"
-msgid "峰值电量：{0}"
+msgid "Peak Power Generation: {0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALSTORAGE
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.TIDALSTORAGE"
-msgid "总液体储量：{0}"
+msgid "Total Storage: {0}"
+msgstr ""
+
+#. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENT_SHEARING
+msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENT_SHEARING"
+msgid "{0} Build-up: {1}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION"
-msgid "淤积时间：{0}"
+msgid "Build-up Time: {0}"
 msgstr ""
 
 #. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT
 msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT"
-msgid "喷出速率：{0}/秒"
-msgstr ""
-
-#. BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID
-msgctxt "BetterReef.STRINGS.UI.BUILDINGEFFECTS.UWATERVENTSOLID"
-msgid "实际<link=\"SULFUR\">硫</link>堆积: {0}"
+msgid "{0} Emitting Rate: {1}/s"
 msgstr ""
 
