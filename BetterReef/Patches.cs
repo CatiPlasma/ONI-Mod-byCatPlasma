@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CatUtilLib;
+using Database;
 using HarmonyLib;
-using KMod;
 using UnityEngine;
 
 namespace BetterReef
@@ -56,6 +55,25 @@ namespace BetterReef
                 if (__result == null) return;
                 __result.AddOrGet<UnderwaterVentRandomizer>();
                 __result.AddOrGet<UserNameable>();
+                __result.GetComponent<InfoDescription>().description = STRINGS.CREATURES.SPECIES.GEYSER.UNDERWATERVENT.DESC;
+            }
+
+            [HarmonyPatch(typeof(UnderwaterVent.Def), nameof(UnderwaterVent.Def.GetDescriptors))]
+            public static class UnderwaterVent_GetDescriptors_Patch
+            {
+                public static void Postfix(ref List<Descriptor> __result)
+                {
+                    __result = new List<Descriptor>();
+                }
+            }
+            
+            [HarmonyPatch(typeof(MiscStatusItems), "CreateStatusItems")]
+            public static class MiscStatusItems_CreateStatusItems_Patch
+            {
+                public static void Postfix(MiscStatusItems __instance)
+                {
+                    UnderwaterVentRandomizer.ModifyVanillaDynamicStrings(__instance);
+                }
             }
         }
 
@@ -75,6 +93,7 @@ namespace BetterReef
             {
                 ReefGeyserRandomizer.RegisterReefGeyserString();
                 UnderwaterVentRandomizer.RegisterUnderwaterVentString();
+                UnderwaterVentRandomizer.ModifyVanillaStaticStrings();
             }
         }
 
@@ -83,11 +102,9 @@ namespace BetterReef
             public static void MapOverlayCompatibility(GameObject go, ref object colorReference)
             {
                 if (go.GetComponent<ReefGeyserRandomizer>() != null)
-                {
-                    colorReference = "Thermal Gas Fissure";
-                    return;
-                }
-                if (go.GetComponent<UnderwaterVentRandomizer>() != null) colorReference = "Tidal Spring";
+                    colorReference = "Small Reef Geyser";
+                else if (go.GetComponent<UnderwaterVentRandomizer>() != null)
+                    colorReference = "Tidal Spring";
             }
         }
     }

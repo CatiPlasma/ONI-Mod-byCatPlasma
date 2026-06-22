@@ -44,7 +44,7 @@ namespace BetterReef
         
         private void InitMultiplier()
         {
-            (inhaleMultiplier, exhaleMultiplier) = CatUtils.Roll(gameObject, minMultiplier, maxMultiplier, 2);
+            (inhaleMultiplier, exhaleMultiplier) = CatUtils.RollFloats(gameObject, minMultiplier, maxMultiplier, 2);
         }
 
         private void ApplyMultiplier()
