@@ -13,7 +13,7 @@
 目前仓库包含以下项目：
 
 | 项目 | 名称 | 类型 | 简介 | 订阅 |
-| ---- | ---- | ---- | ---- | ---- |
+| ---- | ------ | ------ | ---- | ------ |
 | [BetterReef](./BetterReef) | 水生星随机化拓展 | Mod | 随机化潮汐泉与热气裂隙数据，并将潮汐发电机发电量与潮汐泉喷发量关联。 | [创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3747647080) |
 | [ChineseFood](./ChineseFood) | 中式美食 | Mod | 为游戏添加中式菜品。 | 未发布 |
 | [CatUtilLib](./CatUtilLib) | 🐱库 | 公共库 | 多个 Mod 共用的工具库，提供日志、本地化、字符串及常用工具。 |  |
