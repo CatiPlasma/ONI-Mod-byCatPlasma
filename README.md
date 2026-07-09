@@ -12,11 +12,11 @@
 
 目前仓库包含以下项目：
 
-| 项目 | 类型 | 简介 |
-| ---- | ---- | ---- |
-| [BetterReef](./BetterReef) | Mod | 水生星随机化拓展，随机化潮汐泉与热气裂隙数据，并将潮汐发电机发电量与潮汐泉喷发量关联。 |
-| [ChineseFood](./ChineseFood) | Mod | 为游戏添加中式菜品。 |
-| [CatUtilLib](./CatUtilLib) | 公共库 | 多个 Mod 共用的工具库，提供日志、本地化、字符串及常用工具。 |
+| 项目 | 名称 | 类型 | 简介 | 订阅 |
+| ---- | ---- | ---- | ---- | ---- |
+| [BetterReef](./BetterReef) | 水生星随机化拓展 | Mod | 随机化潮汐泉与热气裂隙数据，并将潮汐发电机发电量与潮汐泉喷发量关联。 | [创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3747647080) |
+| [ChineseFood](./ChineseFood) | 中式美食 | Mod | 为游戏添加中式菜品。 | 未发布 |
+| [CatUtilLib](./CatUtilLib) | 🐱库 | 公共库 | 多个 Mod 共用的工具库，提供日志、本地化、字符串及常用工具。 |  |
 
 随着开发进行，仓库中的项目可能持续增加。
 
@@ -53,9 +53,9 @@ ONI-Mod-byCatPlasma
 
 推荐开发环境：
 
-- Visual Studio 2022
-- C#
-- .NET Framework（与游戏版本一致）
+- JetBrains Rider 或 Visual Studio 2022
+- C# 8.0
+- .NET Standard 2.1 (.NET 10)
 - Harmony
 - Oxygen Not Included Mod SDK
 
@@ -71,7 +71,7 @@ ONI-Mod-byCatPlasma
 git clone https://github.com/CatiPlasma/ONI-Mod-byCatPlasma.git
 ```
 
-2. 使用 Visual Studio 打开
+2. 使用 Rider 或 Visual Studio 打开
 
 ```
 ONI-Mod-byCatPlasma.sln
