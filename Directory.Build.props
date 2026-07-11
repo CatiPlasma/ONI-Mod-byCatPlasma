@@ -1,0 +1,9 @@
+﻿<Project>
+    <PropertyGroup>
+        <DevModDir>$(USERPROFILE)\Documents\Klei\OxygenNotIncluded\mods\Dev</DevModDir>
+        <ModReleaseDir>$(SolutionDir)$(TargetName)\Release</ModReleaseDir>
+        <Today>$([System.DateTime]::Now.ToString(`yyyy.MM.dd`))</Today>
+        <IsLib>false</IsLib>
+        <Yq>$(USERPROFILE)\yq.exe</Yq>
+    </PropertyGroup>
+</Project>

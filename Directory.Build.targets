@@ -1,0 +1,30 @@
+﻿<Project>
+    <Target Name="PreBuildSetup">
+        <MakeDir Directories="$(ModReleaseDir)" Condition="!Exists('$(ModReleaseDir)')" />
+
+        <WriteLinesToFile
+                File="$(ModReleaseDir)\mod.yaml"
+                Lines="title: &quot;$(TargetName)&quot;;description: &quot;&quot;;staticID: &quot;CatPlasma.$(TargetName)&quot;"
+                Overwrite="true"
+                Encoding="UTF-8"
+                Condition="!Exists('$(ModReleaseDir)\mod.yaml')" />
+
+        <WriteLinesToFile
+                File="$(ModReleaseDir)\mod_info.yaml"
+                Lines="supportedContent: ALL;minimumSupportedBuild: 736649;version: &quot;$(Today)&quot;;APIVersion: 2"
+                Overwrite="true"
+                Encoding="UTF-8"
+                Condition="!Exists('$(ModReleaseDir)\mod_info.yaml')" />
+        
+        <Exec Command="mklink /J &quot;$(DevModDir)\$(TargetName)&quot; &quot;$(ModReleaseDir)&quot;"
+              Condition="!Exists('$(DevModDir)\$(TargetName)')" />
+    </Target>
+    
+    <Target Name="ILRepack" DependsOnTargets="PreBuildSetup">
+        <Exec Command="&quot;$(ILRepack)&quot; /lib:&quot;$(SolutionDir)Libs&quot; /out:&quot;$(ModReleaseDir)\$(TargetName)Repacked.dll&quot; &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(TargetDir)CatUtilLib.dll&quot;" />
+    </Target>
+    
+    <Target Name="UdateVersion" AfterTargets="Build" DependsOnTargets="ILRepack" Condition="'$(IsLib)' == 'false'">
+        <Exec Command="&quot;$(Yq)&quot; -i &quot;.version=\&quot;$(Today)\&quot;&quot; &quot;$(ModReleaseDir)\mod_info.yaml&quot;" />
+    </Target>
+</Project>
