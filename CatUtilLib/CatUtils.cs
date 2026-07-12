@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using KMod;
 using UnityEngine;
 
 namespace CatUtilLib
@@ -80,5 +83,20 @@ namespace CatUtilLib
             if (world == null) return;
             foreach (string id in world.Biomes) LogUtil.Debug($"BiomeId: {id}");
         }
+
+        private static bool GetDebugState()
+        {
+            Type? type = asm.GetTypes().FirstOrDefault(t => typeof(UserMod2).IsAssignableFrom(t));
+            if (type == null) return false;
+            
+            const BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
+            FieldInfo? field = type.GetField("IsDebug", flags);
+            if (field == null || field.FieldType != typeof(bool)) return false;
+            
+            return (bool)field.GetValue(null);
+        }
+
+        private static readonly Assembly asm = Assembly.GetExecutingAssembly();
+        internal static readonly bool isDebug = GetDebugState();
     }
 }
