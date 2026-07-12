@@ -37,6 +37,6 @@ namespace BetterReef
             LogUtil.Info("Compatibility Process Finished");
         }
 
-        public static bool IsDebug = false;
+        public static readonly bool IsDebug = false;
     }
 }

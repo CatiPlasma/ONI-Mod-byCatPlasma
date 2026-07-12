@@ -25,7 +25,7 @@ namespace BetterReef
         {
             public static void Postfix(GameObject go)
             {
-                if (go != null) go.AddOrGet<ReefGeneratorMultiplier>();
+                if (go != null) go.AddOrGet<ReefGeneratorModifier>();
             }
 
             [HarmonyPatch(typeof(Tinkerable), "OnCompleteWork")]
@@ -33,7 +33,7 @@ namespace BetterReef
             {
                 public static void Postfix(Tinkerable __instance)
                 {
-                    if (__instance.gameObject.GetComponent<ReefGeneratorMultiplier>() != null) __instance.gameObject.GetComponent<ReefGeneratorMultiplier>().TuneupStart();
+                    if (__instance.gameObject.GetComponent<ReefGeneratorModifier>() != null) __instance.gameObject.GetComponent<ReefGeneratorModifier>().TuneupStart();
                 }
             }
 
@@ -42,7 +42,7 @@ namespace BetterReef
             {
                 public static void Postfix(Tinkerable __instance)
                 {
-                    if (__instance.gameObject.GetComponent<ReefGeneratorMultiplier>() != null)  __instance.gameObject.GetComponent<ReefGeneratorMultiplier>().TuneupEnd();
+                    if (__instance.gameObject.GetComponent<ReefGeneratorModifier>() != null)  __instance.gameObject.GetComponent<ReefGeneratorModifier>().TuneupEnd();
                 }
             }
         }

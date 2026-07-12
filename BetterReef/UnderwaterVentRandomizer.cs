@@ -57,7 +57,7 @@ namespace BetterReef
                 maxBuildupSolidMultiplier, 
                 2);
             buildupMultiplier = buildupMultiplierTemp / (float)Math.Sqrt(bubbleMultiplier);
-            solidMultiplier = solidMultiplierTemp * buildupMultiplier / (float)Math.Sqrt(buildupMultiplier);
+            solidMultiplier = solidMultiplierTemp * buildupMultiplier / (float)Math.Sqrt(bubbleMultiplier);
 
             isRolled = true;
         }

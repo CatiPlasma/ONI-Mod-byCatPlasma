@@ -1,16 +1,13 @@
-﻿using System;
-using System.Reflection;
-using CatUtilLib;
+﻿using System.Reflection;
 using HarmonyLib;
 using Klei.AI;
 using KSerialization;
 using UnityEngine;
-using Attribute = Klei.AI.Attribute;
 
 namespace BetterReef
 {
     [SerializationConfig(MemberSerialization.OptIn)]
-    public class ReefGeneratorMultiplier: KMonoBehaviour
+    public class ReefGeneratorModifier: KMonoBehaviour
     {
         [Serialize] private float normalMultiplier;
         [Serialize] private float tuneupMultiplier;
@@ -21,7 +18,7 @@ namespace BetterReef
         
         private static readonly FieldInfo GeyserTargetFieldInfo = AccessTools.Field(typeof(ReefGenerator), "GeyserTarget");
         
-        private bool isApplied = false;
+        private bool isApplied;
         private SchedulerHandle retryHandler = new SchedulerHandle();
 
         protected override void OnSpawn()
@@ -71,7 +68,7 @@ namespace BetterReef
                 return;
             }
             
-            normalMultiplier = (float)Math.Sqrt(geyser.GetComponent<ReefGeyserRandomizer>().GetExhaleMultiplier());
+            normalMultiplier = Mathf.Sqrt(geyser.GetComponent<ReefGeyserRandomizer>().GetExhaleMultiplier());
             tuneupMultiplier = normalMultiplier * 1.5f - 0.5f;
             
             multiplier = isTuneup ? tuneupMultiplier : normalMultiplier;
