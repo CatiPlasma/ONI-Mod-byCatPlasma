@@ -1,30 +1,30 @@
 ﻿<Project>
     <Target Name="PreBuildSetup">
-        <MakeDir Directories="$(ModReleaseDir)" Condition="!Exists('$(ModReleaseDir)')" />
+        <MakeDir Directories="$(SolutionDir)$(TargetName)\Release" Condition="!Exists('$(SolutionDir)$(TargetName)\Release')" />
 
         <WriteLinesToFile
-                File="$(ModReleaseDir)\mod.yaml"
+                File="$(SolutionDir)$(TargetName)\Release\mod.yaml"
                 Lines="title: &quot;$(TargetName)&quot;;description: &quot;&quot;;staticID: &quot;CatPlasma.$(TargetName)&quot;"
                 Overwrite="true"
                 Encoding="UTF-8"
-                Condition="!Exists('$(ModReleaseDir)\mod.yaml')" />
+                Condition="!Exists('$(SolutionDir)$(TargetName)\Release\mod.yaml')" />
 
         <WriteLinesToFile
-                File="$(ModReleaseDir)\mod_info.yaml"
+                File="$(SolutionDir)$(TargetName)\Release\mod_info.yaml"
                 Lines="supportedContent: ALL;minimumSupportedBuild: 736649;version: &quot;$(Today)&quot;;APIVersion: 2"
                 Overwrite="true"
                 Encoding="UTF-8"
-                Condition="!Exists('$(ModReleaseDir)\mod_info.yaml')" />
+                Condition="!Exists('$(SolutionDir)$(TargetName)\Release\mod_info.yaml')" />
         
-        <Exec Command="mklink /J &quot;$(DevModDir)\$(TargetName)&quot; &quot;$(ModReleaseDir)&quot;"
+        <Exec Command="mklink /J &quot;$(DevModDir)\$(TargetName)&quot; &quot;$(SolutionDir)$(TargetName)\Release&quot;"
               Condition="!Exists('$(DevModDir)\$(TargetName)')" />
     </Target>
     
     <Target Name="ILRepack" DependsOnTargets="PreBuildSetup">
-        <Exec Command="&quot;$(ILRepack)&quot; /lib:&quot;$(SolutionDir)Libs&quot; /out:&quot;$(ModReleaseDir)\$(TargetName)Repacked.dll&quot; &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(TargetDir)CatUtilLib.dll&quot;" />
+        <Exec Command="&quot;$(ILRepack)&quot; /lib:&quot;$(SolutionDir)Libs&quot; /out:&quot;$(SolutionDir)$(TargetName)\Release\$(TargetName)Repacked.dll&quot; &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(TargetDir)CatUtilLib.dll&quot;" />
     </Target>
     
     <Target Name="UdateVersion" AfterTargets="Build" DependsOnTargets="ILRepack" Condition="'$(IsLib)' == 'false'">
-        <Exec Command="&quot;$(Yq)&quot; -i &quot;.version=\&quot;$(Today)\&quot;&quot; &quot;$(ModReleaseDir)\mod_info.yaml&quot;" />
+        <Exec Command="&quot;$(Yq)&quot; -i &quot;.version=\&quot;$(Today)\&quot;&quot; &quot;$(SolutionDir)$(TargetName)\Release\mod_info.yaml&quot;" />
     </Target>
 </Project>
