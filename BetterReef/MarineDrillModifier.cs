@@ -32,10 +32,10 @@ namespace BetterReef
             float harnessFactor = Mathf.Log(buildupElement.hardness, 2f)/Mathf.Log(standardElement.hardness, 2f);
             float massFactor = ventSMI.def.data.SolidMass / 1000;
             SimHashes primaryElement = gameObject.GetComponent<PrimaryElement>().ElementID;
-            durationMultiplier = buildupElementTemp > turnTempDic.GetValueOrDefault(primaryElement, 1000)
-                ? 2 * massFactor * Mathf.Exp(harnessFactor)
-                : massFactor * Mathf.Exp(harnessFactor);
-            diamondConsumptionMultiplier = massFactor * Mathf.Exp(harnessFactor);
+            durationMultiplier = buildupElementTemp > turnTempDic.GetValueOrDefault(primaryElement, 1000.15f)
+                ? 2 * massFactor * Mathf.Exp(harnessFactor - 1)
+                : massFactor * Mathf.Exp(harnessFactor - 1);
+            diamondConsumptionMultiplier = massFactor * Mathf.Exp(harnessFactor - 1);
         }
 
         private void ApplyModifiers()
@@ -57,7 +57,27 @@ namespace BetterReef
 
         public List<Descriptor> GetDescriptors(GameObject go)
         {
-            return new List<Descriptor>();
+            return new List<Descriptor>
+            {
+                new(
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENTDRILLDURATION,
+                        durationMultiplier > 12
+                            ? GameUtil.GetFormattedCycles(100 * durationMultiplier)
+                            : GameUtil.GetFormattedTime(100 * durationMultiplier)),
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENTDRILLDURATION,
+                        durationMultiplier > 12
+                            ? GameUtil.GetFormattedCycles(100 * durationMultiplier)
+                            : GameUtil.GetFormattedTime(100 * durationMultiplier))),
+                new(
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENTDIAMONDCONSUMTION,
+                        GameUtil.GetFormattedMass(100 * diamondConsumptionMultiplier)),
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENTDIAMONDCONSUMTION,
+                        GameUtil.GetFormattedMass(100 * diamondConsumptionMultiplier))),
+                new(
+                    string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENTDRILLTEMP,
+                        GameUtil.GetFormattedTemperature(turnTempDic.GetValueOrDefault(gameObject.GetComponent<PrimaryElement>().ElementID, 1000.15f))),
+                    STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENTDRILLTEMPTOOLTIP)
+            };
         }
 
         Dictionary<SimHashes, float> turnTempDic = new()

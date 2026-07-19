@@ -15,6 +15,11 @@
                 public static LocString UWATERVENTEMIT = "{0} Emit Rate: {1}/s";
                 public static LocString UWATERVENTDURATION = "Build-up Time: {0}";
                 public static LocString UNDERWATERVENT_SHEARING = "{0} Build-up: {1}";
+
+                public static LocString UNDERWATERVENTDRILLDURATION = "Work Duration: {0}";
+                public static LocString UNDERWATERVENTDIAMONDCONSUMTION = "Diamond Consumption: {0}";
+                public static LocString UNDERWATERVENTDRILLTEMP = "Best Solid Temperature: Under {0}";
+                public static LocString UNDERWATERVENTDRILLTEMPTOOLTIP = $"If solid temperature over this, work duration will be {(global::STRINGS.UI.PRE_KEYWORD)}DOUBLE{(global::STRINGS.UI.PST_KEYWORD)}!";
             }
         }
 

@@ -77,6 +77,15 @@ namespace BetterReef
             }
         }
 
+        [HarmonyPatch(typeof(UnderwaterVentDrillConfig), nameof(UnderwaterVentDrillConfig.DoPostConfigureComplete))]
+        public static class UnderwaterVentDrillConfig_DoPostConfigureComplete_Patch
+        {
+            public static void Postfix(GameObject go)
+            {
+                if (go != null) go.AddOrGet<MarineDrillModifier>();
+            }
+        }
+
         [HarmonyPatch(typeof(Localization), nameof(Localization.Initialize))]
         public static class Localization_Initialize_Patch
         {
