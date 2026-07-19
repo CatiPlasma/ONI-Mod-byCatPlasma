@@ -145,19 +145,19 @@ namespace BetterReef
         {
             return new List<Descriptor>
             {
-                new Descriptor(
+                new(
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT,
                         ElementLoader.FindElementByHash(smi.def.data.BubbleElement).name,
                         GameUtil.GetFormattedMass(GetEmittingRate())),
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT,
                         ElementLoader.FindElementByHash(smi.def.data.BubbleElement).name,
                         GameUtil.GetFormattedMass(GetEmittingRate()))),
-                new Descriptor(
+                new(
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION,
                         GameUtil.GetFormattedCycles(GetBuildupDuration())),
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION,
                         GameUtil.GetFormattedCycles(GetBuildupDuration()))),
-                new Descriptor(
+                new(
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENT_SHEARING,
                         ElementLoader.FindElementByHash(smi.def.data.SolidElement).name,
                         GameUtil.GetFormattedMass(GetSolidMass())),
