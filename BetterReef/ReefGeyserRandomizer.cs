@@ -144,7 +144,7 @@ namespace BetterReef
         {
             storage = GetComponent<Storage>();
             elementConsumer = GetComponent<ElementConsumer>();
-            smi = GetComponent<StateMachineController>()?.GetSMI<BreathingGeyser.Instance>();
+            smi = gameObject.GetSMI<BreathingGeyser.Instance>();
             return storage != null && elementConsumer != null && smi != null;
         }
         

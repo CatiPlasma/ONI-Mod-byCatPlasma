@@ -28,16 +28,19 @@ namespace BetterReef
 
         [MyCmpAdd] private UserNameable nameable;
         private SchedulerHandle retryHandler;
+
+        private UnderwaterVent.Instance smi;
         
-        public float GetEmittingRate() => GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.BubbleMassRate;
-        public SimHashes GetEmittingElement() => GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.BubbleElement;
-        public float GetBuildupDuration() => GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.BuildUpDuration;
-        public float GetSolidMass() => GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.SolidMass;
-        public SimHashes GetSolidElement => GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.SolidElement;
+        public float GetEmittingRate() => smi.def.data.BubbleMassRate;
+        public SimHashes GetEmittingElement() => smi.def.data.BubbleElement;
+        public float GetBuildupDuration() => smi.def.data.BuildUpDuration;
+        public float GetSolidMass() => smi.def.data.SolidMass;
+        public SimHashes GetSolidElement => smi.def.data.SolidElement;
 
         protected override void OnSpawn()
         {
             base.OnSpawn();
+            smi = gameObject.GetSMI<UnderwaterVent.Instance>();
             ApplyRandomize();
             GenerateName();
         }
@@ -92,13 +95,6 @@ namespace BetterReef
             if (isElementRolled && CatUtils.RollInts(gameObject, 0, 100)%2==0 && randomElement.BubbleMassRate < 0)
                 randomElement = RandomElementSets.RawGas;
             
-            UnderwaterVent.Instance smi = GetComponent<StateMachineController>()?.GetSMI<UnderwaterVent.Instance>();
-            if (smi == null)
-            {
-                SchedualedRetry();
-                return;
-            }
-            
             retryHandler.ClearScheduler();
             
             UnderwaterVent.Def def = smi.def;
@@ -151,10 +147,10 @@ namespace BetterReef
             {
                 new Descriptor(
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT,
-                        ElementLoader.FindElementByHash(GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.BubbleElement).name,
+                        ElementLoader.FindElementByHash(smi.def.data.BubbleElement).name,
                         GameUtil.GetFormattedMass(GetEmittingRate())),
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTEMIT,
-                        ElementLoader.FindElementByHash(GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.BubbleElement).name,
+                        ElementLoader.FindElementByHash(smi.def.data.BubbleElement).name,
                         GameUtil.GetFormattedMass(GetEmittingRate()))),
                 new Descriptor(
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UWATERVENTDURATION,
@@ -163,10 +159,10 @@ namespace BetterReef
                         GameUtil.GetFormattedCycles(GetBuildupDuration()))),
                 new Descriptor(
                     string.Format(STRINGS.UI.BUILDINGEFFECTS.UNDERWATERVENT_SHEARING,
-                        ElementLoader.FindElementByHash(GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.SolidElement).name,
+                        ElementLoader.FindElementByHash(smi.def.data.SolidElement).name,
                         GameUtil.GetFormattedMass(GetSolidMass())),
                     string.Format(UI.BUILDINGEFFECTS.TOOLTIPS.UNDERWATERVENT_SHEARING,
-                        ElementLoader.FindElementByHash(GetComponent<StateMachineController>().GetSMI<UnderwaterVent.Instance>().def.data.SolidElement).name))
+                        ElementLoader.FindElementByHash(smi.def.data.SolidElement).name))
             };
         }
 

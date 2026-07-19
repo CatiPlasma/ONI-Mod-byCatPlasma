@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using HarmonyLib;
-using Klei.AI;
+﻿using Klei.AI;
 using KSerialization;
 using UnityEngine;
 
@@ -11,20 +9,21 @@ namespace BetterReef
     {
         [Serialize] private float normalMultiplier;
         [Serialize] private float tuneupMultiplier;
-        [Serialize] private bool isTuneup = false;
+        [Serialize] private bool isTuneup;
         public float multiplier = -1f;
 
         private AttributeModifier modifier;
         
-        private static readonly FieldInfo GeyserTargetFieldInfo = AccessTools.Field(typeof(ReefGenerator), "GeyserTarget");
-        
         private bool isApplied;
-        private SchedulerHandle retryHandler = new SchedulerHandle();
+        private SchedulerHandle retryHandler;
+
+        private ReefGenerator.Instance smi;
 
         protected override void OnSpawn()
         {
-            ApplyMultiplier();
             base.OnSpawn();
+            smi = gameObject.GetSMI<ReefGenerator.Instance>();
+            ApplyMultiplier();
         }
 
         protected override void OnPrefabInit()
@@ -45,13 +44,6 @@ namespace BetterReef
             if (isApplied) return;
 
             retryHandler.ClearScheduler();
-            
-            ReefGenerator.Instance smi = GetComponent<StateMachineController>()?.GetSMI<ReefGenerator.Instance>();
-            if (smi == null)
-            {
-                ScheduledRetry();
-                return;
-            }
             
             int cell = Grid.PosToCell(smi.transform.GetPosition());
             if (!Grid.IsValidCell(cell))
@@ -95,7 +87,7 @@ namespace BetterReef
         public void TuneupStart()
         {
             isTuneup = true;
-            if (multiplier == tuneupMultiplier) return;
+            if (Mathf.Approximately(multiplier, tuneupMultiplier)) return;
             multiplier = tuneupMultiplier;
             UpdateModifier();
         }
@@ -103,7 +95,7 @@ namespace BetterReef
         public void TuneupEnd()
         {
             isTuneup = false;
-            if (multiplier == normalMultiplier) return;
+            if (Mathf.Approximately(multiplier, normalMultiplier)) return;
             multiplier = normalMultiplier;
             UpdateModifier();
         }
